@@ -1,3 +1,4 @@
+#Codigo 1
 def transforma_base(lista):
     if len(lista)==0:
         return {}
@@ -19,3 +20,5 @@ def transforma_base(lista):
     if len(dificil)>0:
         final['dificil']=dificil
     return final
+
+#Codigo 2
