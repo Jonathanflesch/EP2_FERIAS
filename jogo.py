@@ -22,3 +22,26 @@ def transforma_base(lista):
     return final
 
 #Codigo 2
+
+def valida_questao(questao):
+    validacao = {}
+    chaves = ["titulo", "nivel", "opcoes", "correta"]
+    chaves_opcoes = ['A', 'B', 'C', 'D']
+    
+    for chave in chaves:
+        if chave not in questao:
+            validacao[chave] = 'nao_encontrado'
+
+    if len(questao) != len(chaves):
+        validacao['outro'] = 'numero_chaves_invalido'
+
+    if 'nivel' in questao and questao['nivel'] not in ['facil', 'medio', 'dificil']:
+        validacao['nivel'] = 'valor_errado'
+    
+    if 'opcoes' in questao and len(questao['opcoes']) != 4:
+        validacao['opcoes'] = 'tamanho_invalido'
+
+    if 'opcoes' in questao and len(questao['opcoes']) == 4 and 'opcoes' not in validacao:
+        opcoes_vazias = {}
+
+    return validacao
