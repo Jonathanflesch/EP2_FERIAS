@@ -80,3 +80,11 @@ def sorteia_questao(dicionario, nivel):
     sorteada = random.choice(dicionario[nivel])
     return sorteada
 
+#Funcao 5
+
+def sorteia_questao_inedita(dicionario,nivel,sorteadas):
+    sorte = sorteia_questao(dicionario,nivel)
+    while sorte in sorteadas:
+        sorte = sorteia_questao(dicionario,nivel)
+    sorteadas.append(sorte)
+    return sorte
