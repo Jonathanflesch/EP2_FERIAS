@@ -72,3 +72,11 @@ def valida_questoes(lista):
         problemas = valida_questao(questao)
         novo.append(problemas)
     return novo
+
+#Funcao 4   
+
+import random
+def sorteia_questao(dicionario, nivel):
+    sorteada = random.choice(dicionario[nivel])
+    return sorteada
+
