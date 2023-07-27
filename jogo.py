@@ -88,3 +88,23 @@ def sorteia_questao_inedita(dicionario,nivel,sorteadas):
         sorte = sorteia_questao(dicionario,nivel)
     sorteadas.append(sorte)
     return sorte
+
+#Funcao 6
+def questao_para_texto(dicionario,n):
+    print(dicionario)
+    print(n)
+    titulo = dicionario['titulo']
+    opcoes =''
+    for opcao in dicionario['opcoes']:
+        chance = dicionario['opcoes'][opcao]
+        opcoes += f'{opcao}: {chance}\n'
+
+    final =f'''
+----------------------------------------
+QUESTAO {n}
+
+{titulo}
+
+RESPOSTAS:
+{opcoes}'''
+    return final
