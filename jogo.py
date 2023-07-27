@@ -63,3 +63,12 @@ def valida_questao(dicionario):
         if dicionario['correta'] not in letras:
             final['correta']= 'valor_errado'
     return final
+
+#Funcao 3
+
+def valida_questoes(lista):
+    novo =[]
+    for questao in lista:
+        problemas = valida_questao(questao)
+        novo.append(problemas)
+    return novo
