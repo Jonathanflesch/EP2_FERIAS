@@ -108,3 +108,19 @@ QUESTAO {n}
 RESPOSTAS:
 {opcoes}'''
     return final
+
+#Ultima funcao
+def gera_ajuda(questao):
+    erradas=[]
+    dicadas=[]
+    correta = questao['correta']
+    for opcao in questao['opcoes']:
+        if opcao != correta:
+            erradas.append(opcao)
+    escolhida = random.choice(erradas)
+    for o in questao['opcoes']:
+        if o == escolhida and o not in dicadas:
+            dica = questao['opcoes'][o]
+            dicadas.append(o)
+    
+    return f'DICA:\nOpções certamente erradas: {dica}'
