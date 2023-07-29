@@ -301,47 +301,48 @@ sorteadas =[]
 contador = 1
 ajudas=0
 pulos=0
-questao = sorteia_questao_inedita(questoes,nivel,sorteadas)
-texto = questao_para_texto(questao,contador)
 premio = 0
 print('Olá! Você está na Fortuna DesSoft e terá a oportunidade de enriquecer!')
+print("\033[1;35;40mOlá! Você está na Fortuna DesSoft e terá a oportunidade de enriquecer! \033[1;36;40m")
 nome = input('Qual o seu nome? ')
 print(f'Ok {nome}, você tem direito a pular 3 vezes e 2 ajudas!')
 print('As opções de resposta são "A", "B", "C", "D", "ajuda", "pula" e "parar"!')
 continuar = input('Aperte ENTER para continuar: ')
 if continuar =='':
-    print('Vamos comecar:')
-    while 1:
+    print('Vamos comecar:\n\n')
+    while continuar == '':
         print(f'O seu premio atual é de {premio}')
         if premio >= 1000000:
             break
         questao = sorteia_questao_inedita(questoes,nivel,sorteadas)
         texto = questao_para_texto(questao,contador)
-        for x in quest:
-            correta= x['correta']
-            print(texto)
-            resposta = input('Resposta: ')
-            if resposta == 'ajuda':
-                print(gera_ajuda(questao))
-                ajudas+=1
-            elif resposta == correta:
-                print('Voce acertou!')
-                contador+=1
-                if premio >= 500:
-                    premio *= 2
-                else:
-                    premio = 500
-            elif resposta == 'pular':
-                contador+=1
-            elif resposta == 'parar':
-                break
-            elif resposta not in alternativas:
-                print('Opcao invalida!')
-                print('As opções de resposta são "A", "B", "C", "D", "ajuda", "pula" e "parar"!\n')
+        correta= questao['correta']
+        print(texto)
+        resposta = input('Resposta: ')
+        if resposta == 'ajuda' and ajudas <2:
+            print(gera_ajuda(questao))
+            ajudas+=1
+        elif resposta == correta:
+            print('Voce acertou!')
+            contador+=1
+            if premio >= 500:
+                premio *= 2
             else:
-                print('Voce errou!')
-                print('Volte sempre!')
-                break
-print('Bom jogo!')
+                premio = 500
+        elif resposta == 'pular' and pulos<3:
+            contador+=1
+            pulos +=1
+            break
+        elif resposta == 'parar':
+            break
+        elif resposta not in alternativas:
+            print('Opcao invalida!')
+            print('As opções de resposta são "A", "B", "C", "D", "ajuda", "pula" e "parar"!\n')
+        else:
+            print('Voce errou!')
+            print('Volte sempre!')
+            break
+        continuar = input('Aperte ENTER para a proxima questao ou digite parar para acabar o jogo:\n\n')
+print('\n\nBom jogo!')
 print('Volte sempre!')
 print(f'O seu premio final foi de: {premio}')
